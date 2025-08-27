@@ -702,11 +702,13 @@
 
         .modal-content {
             background: var(--bg-white);
-            margin: 3% auto;
-            padding: 3rem;
+            margin: 2% auto;
+            padding: 2rem;
             border-radius: var(--radius-2xl);
-            width: 90%;
+            width: 95%;
             max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
             animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-2xl);
@@ -721,6 +723,18 @@
                 transform: translateY(0) scale(1); 
                 opacity: 1; 
             }
+        }
+
+        /* Modal 초기 상태 */
+        .modal .modal-content {
+            transform: translateY(-50px) scale(0.95);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal[style*="block"] .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         .close {
@@ -1102,6 +1116,71 @@
                     </div>
                     
                     <a href="https://ai-trendwave-tool.notion.site/4-AI-AI-2596e20acd34801bb466da8b758c2af8?pvs=74" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--radius-xl); font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;">📚 상세 커리큘럼 보기</a>
+                </div>
+            </div>
+            
+            <!-- 맞춤형 교육 섹션 -->
+            <div class="card fade-in" style="margin-top: 3rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="background: rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-2xl); font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">💡 맞춤형</div>
+                    <h3 style="color: white; font-size: 1.6rem; margin-bottom: 1rem; font-weight: 700;">🎯 1:1 맞춤형 AI 커리큘럼 제작 및 강의</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem;">
+                        고객님의 목표와 필요에 완벽하게 부합하는 개인 맞춤형 AI 교육을 제공합니다.<br>
+                        단순한 툴 사용법을 넘어, 실질적인 성과 창출과 비즈니스 혁신을 목표로 합니다.
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: var(--radius-lg); backdrop-filter: blur(10px);">
+                        <h4 style="color: #fee500; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">🏢 기업/팀 교육</h4>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; line-height: 1.6;">
+                            특정 직무(마케팅, 기획, 콘텐츠 제작 등)에 AI를 효과적으로 도입하고 싶은 팀을 위한 맞춤 교육
+                        </p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: var(--radius-lg); backdrop-filter: blur(10px);">
+                        <h4 style="color: #fee500; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">👤 개인 역량 강화</h4>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; line-height: 1.6;">
+                            AI를 활용해 새로운 직무 역량을 개발하거나 전문성을 심화시키고 싶은 개인을 위한 교육
+                        </p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: var(--radius-lg); backdrop-filter: blur(10px);">
+                        <h4 style="color: #fee500; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">💼 사업화/창업 준비</h4>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; line-height: 1.6;">
+                            AI 기술을 활용한 1인 사업 시작이나 기존 비즈니스 모델 고도화를 원하는 분들을 위한 교육
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: var(--radius-lg); margin-bottom: 2rem; backdrop-filter: blur(10px);">
+                    <h4 style="color: #fee500; margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 700; text-align: center;">📋 맞춤형 커리큘럼 제작 프로세스</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #fee500; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">1</div>
+                            <h5 style="color: white; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">진단</h5>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">현재 AI 활용 수준과 학습 목표 심층 상담</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #fee500; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">2</div>
+                            <h5 style="color: white; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">설계</h5>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">최적의 학습 로드맵과 커리큘럼 설계</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #fee500; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">3</div>
+                            <h5 style="color: white; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">제작</h5>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">목표에 맞는 교육 자료 및 실습 예제 구성</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #fee500; color: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">4</div>
+                            <h5 style="color: white; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">강의</h5>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">온/오프라인 맞춤형 강의 및 밀착 지원</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="cta-button" onclick="openCustomModal()" style="background: rgba(255, 255, 255, 0.9); color: #667eea;">
+                        💡 맞춤형 AI 교육 상담 신청하기
+                    </button>
                 </div>
             </div>
             
@@ -1541,7 +1620,16 @@
         <div class="modal-content">
             <button class="close" onclick="closeModal()">×</button>
             <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;">런칭 기념 무료 AI 입문 교육 신청</h2>
-            <p style="margin-bottom: 2rem; color: var(--text-secondary); line-height: 1.6;">부담 없이 신청하세요! 24시간 내에 친절하게 연락드릴게요 😊<br><strong style="color: #fa709a;">🎉 9월 15일까지 한정 무료!</strong></p>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary); line-height: 1.6;">간편하게 정보를 입력해주세요. 24시간 내에 연락드리겠습니다! 😊<br><strong style="color: #fa709a;">🎉 9월 15일까지 한정 무료!</strong></p>
+            
+            <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 2rem; color: #856404;">
+                <div style="font-weight: 600; margin-bottom: 0.5rem;">📧 신청 방법 안내</div>
+                <div style="font-size: 0.9rem; line-height: 1.5;">
+                    신청 버튼 클릭 시 이메일 프로그램이 열리며, 자동으로 작성된 내용을 확인 후 전송해주시면 됩니다.<br>
+                    이메일 프로그램이 없으시면 <strong>krt21k@naver.com</strong>으로 직접 연락주세요!
+                </div>
+            </div>
+
             <form id="applicationForm">
                 <div class="form-group">
                     <label for="name">이름 *</label>
@@ -1581,6 +1669,18 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="course-interest">관심 있는 과정</label>
+                    <select id="course-interest" name="course-interest">
+                        <option value="">선택해주세요</option>
+                        <option value="step1">1단계: AI 시대 일상에 초대하기</option>
+                        <option value="step2">2단계: AI 업무 활용</option>
+                        <option value="step3">3단계: AI 툴 전문적으로 활용하기</option>
+                        <option value="step4">4단계: AI 기반 1인 사업 설계하기</option>
+                        <option value="all">전 과정 다 관심 있어요</option>
+                        <option value="consult">상담 후 결정하고 싶어요</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="motivation">AI를 배우고 싶은 이유</label>
                     <textarea id="motivation" name="motivation" rows="3" placeholder="예: 업무에 도움이 되었으면 좋겠어요, 시대에 뒤처지기 싫어요, 단순히 궁금해요 등 편하게 써주세요!"></textarea>
                 </div>
@@ -1595,7 +1695,96 @@
                     </select>
                 </div>
                 <div style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="cta-button">9월 15일까지 무료 교육 신청하기</button>
+                    <button type="submit" class="cta-button">📧 이메일로 무료 교육 신청하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Modal -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeCustomModal()">×</button>
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;">💡 1:1 맞춤형 AI 교육 상담 신청</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary); line-height: 1.6;">고객님의 목표에 완벽히 부합하는 맞춤형 커리큘럼을 제작해드립니다! 😊</p>
+            
+            <div style="background: #e8f4fd; border: 1px solid #b3d9ff; padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 2rem; color: #004085;">
+                <div style="font-weight: 600; margin-bottom: 0.5rem;">💡 맞춤형 교육 특징</div>
+                <div style="font-size: 0.9rem; line-height: 1.5;">
+                    • 개인/기업 목표에 완벽 맞춤 • 실무 적용 가능한 커리큘럼<br>
+                    • 1:1 밀착 코칭 • 온/오프라인 진행 가능
+                </div>
+            </div>
+
+            <form id="customForm">
+                <div class="form-group">
+                    <label for="custom-name">이름 *</label>
+                    <input type="text" id="custom-name" name="custom-name" required placeholder="홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="custom-organization">소속/회사 *</label>
+                    <input type="text" id="custom-organization" name="custom-organization" required placeholder="예: ○○회사, 개인사업자, 프리랜서 등">
+                </div>
+                <div class="form-group">
+                    <label for="custom-phone">연락처 *</label>
+                    <input type="tel" id="custom-phone" name="custom-phone" required placeholder="010-1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="custom-email">이메일</label>
+                    <input type="email" id="custom-email" name="custom-email" placeholder="example@naver.com (선택사항)">
+                </div>
+                <div class="form-group">
+                    <label for="education-type">교육 대상</label>
+                    <select id="education-type" name="education-type">
+                        <option value="">선택해주세요</option>
+                        <option value="personal">개인 역량 강화</option>
+                        <option value="team">기업/팀 교육 (2-10명)</option>
+                        <option value="company">대규모 기업 교육 (10명 이상)</option>
+                        <option value="startup">사업화/창업 준비</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field">관심 분야/직무</label>
+                    <input type="text" id="field" name="field" placeholder="예: 마케팅, 기획, 콘텐츠 제작, 디자인, 개발, 창업 등">
+                </div>
+                <div class="form-group">
+                    <label for="current-level">현재 AI 활용 수준</label>
+                    <select id="current-level" name="current-level">
+                        <option value="">선택해주세요</option>
+                        <option value="beginner">완전 초보 (AI를 거의 사용해본 적 없음)</option>
+                        <option value="basic">기초 수준 (ChatGPT 정도만 가끔 사용)</option>
+                        <option value="intermediate">중급 수준 (여러 AI 툴을 업무에 활용)</option>
+                        <option value="advanced">고급 수준 (AI를 전문적으로 활용)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goals">달성하고 싶은 목표 *</label>
+                    <textarea id="goals" name="goals" rows="4" required placeholder="예: 마케팅 업무에 AI를 도입해서 콘텐츠 제작 시간을 50% 단축하고 싶어요. 팀원들이 모두 AI를 활용할 수 있도록 교육하고 싶어요. 등등 구체적으로 적어주세요!"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="timeline">희망 교육 일정</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">선택해주세요</option>
+                        <option value="asap">최대한 빠르게 (1-2주 내)</option>
+                        <option value="month">한 달 내</option>
+                        <option value="flexible">일정 협의 후 결정</option>
+                        <option value="longterm">장기 과정 희망</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">예산 범위 (참고용)</label>
+                    <select id="budget" name="budget">
+                        <option value="">선택해주세요 (선택사항)</option>
+                        <option value="under-100">10만원 미만</option>
+                        <option value="100-300">10-30만원</option>
+                        <option value="300-500">30-50만원</option>
+                        <option value="500-1000">50-100만원</option>
+                        <option value="over-1000">100만원 이상</option>
+                        <option value="consult">상담 후 결정</option>
+                    </select>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="cta-button">💡 맞춤형 교육 상담 신청하기</button>
                 </div>
             </form>
         </div>
@@ -1677,25 +1866,93 @@
 
         // Modal functions
         function openModal() {
+            console.log('Opening modal...'); // 디버깅용
             const modal = document.getElementById('applicationModal');
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            
-            setTimeout(() => {
-                modal.querySelector('.modal-content').style.transform = 'translateY(0) scale(1)';
-            }, 10);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // 모달이 확실히 보이도록 강제 설정
+                setTimeout(() => {
+                    const modalContent = modal.querySelector('.modal-content');
+                    if (modalContent) {
+                        modalContent.style.transform = 'translateY(0) scale(1)';
+                        modalContent.style.opacity = '1';
+                    }
+                }, 50);
+                
+                // 첫 번째 입력 필드에 포커스
+                setTimeout(() => {
+                    const firstInput = modal.querySelector('input');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }, 300);
+            } else {
+                console.error('Modal not found');
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('applicationModal');
-            const modalContent = modal.querySelector('.modal-content');
-            
-            modalContent.style.transform = 'translateY(-50px) scale(0.95)';
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
+            if (modal) {
+                const modalContent = modal.querySelector('.modal-content');
+                
+                if (modalContent) {
+                    modalContent.style.transform = 'translateY(-50px) scale(0.95)';
+                    modalContent.style.opacity = '0';
+                }
+                
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Custom Modal functions
+        function openCustomModal() {
+            console.log('Opening custom modal...'); // 디버깅용
+            const modal = document.getElementById('customModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    const modalContent = modal.querySelector('.modal-content');
+                    if (modalContent) {
+                        modalContent.style.transform = 'translateY(0) scale(1)';
+                        modalContent.style.opacity = '1';
+                    }
+                }, 50);
+                
+                // 첫 번째 입력 필드에 포커스
+                setTimeout(() => {
+                    const firstInput = modal.querySelector('input');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }, 300);
+            } else {
+                console.error('Custom modal not found');
+            }
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            if (modal) {
+                const modalContent = modal.querySelector('.modal-content');
+                
+                if (modalContent) {
+                    modalContent.style.transform = 'translateY(-50px) scale(0.95)';
+                    modalContent.style.opacity = '0';
+                }
+                
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
         }
 
         // Instagram info function
@@ -1713,7 +1970,7 @@
             
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = '신청 처리 중...';
+            submitButton.innerHTML = '이메일 준비 중...';
             submitButton.classList.add('loading');
             
             const formData = new FormData(this);
@@ -1752,6 +2009,7 @@
 • 연락처: ${data.phone}
 • 이메일: ${data.email || '미입력'}
 • 컴퓨터 사용 정도: ${data['computer-level'] || '미선택'}
+• 관심 과정: ${data['course-interest'] || '미선택'}
 • 학습 동기: ${data.motivation || '미입력'}
 • 선호 시간: ${data.schedule || '미선택'}
 
@@ -1773,12 +2031,95 @@
                 
                 // Show success message
                 showMessage(
-                    "신청이 완료되었습니다! 🎉",
-                    `${data.name}님, 24시간 내에 ${data.phone}로 연락드리겠습니다.<br><br><strong style="color: #fa709a;">🎉 런칭 기념 9월 15일까지 한정 무료 교육입니다!</strong><br><br>이메일 클라이언트가 열리지 않으면 krt21k@naver.com으로 직접 연락 주세요!`,
+                    "이메일 프로그램이 열렸습니다! 📧",
+                    `${data.name}님, 이메일 내용을 확인하고 전송해주세요!<br><br><strong style="color: #fa709a;">📧 이메일 프로그램이 열리지 않으면</strong><br>krt21k@naver.com으로 직접 연락주세요!<br><br>24시간 내에 ${data.phone}로 연락드리겠습니다.`,
                     "success"
                 );
                 
                 closeModal();
+                this.reset();
+                
+                // Remove validation classes
+                document.querySelectorAll('.success, .error').forEach(el => {
+                    el.classList.remove('success', 'error');
+                });
+            }, 1500);
+        });
+
+        // Custom Form submission
+        document.getElementById('customForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '상담 신청 처리 중...';
+            submitButton.classList.add('loading');
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields
+            const requiredFields = ['custom-name', 'custom-organization', 'custom-phone', 'goals'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!data[field]) {
+                    input.classList.add('error');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                }
+            });
+            
+            if (!isValid) {
+                submitButton.innerHTML = originalText;
+                submitButton.classList.remove('loading');
+                showMessage("입력 오류", "필수 항목을 모두 입력해주세요.", "error");
+                return;
+            }
+            
+            // Email content preparation for custom course
+            const emailContent = `
+💡 ai.trendwave 맞춤형 AI 교육 상담 신청이 접수되었습니다!
+
+📝 신청자 정보:
+• 이름: ${data['custom-name']}
+• 소속/회사: ${data['custom-organization']}
+• 연락처: ${data['custom-phone']}
+• 이메일: ${data['custom-email'] || '미입력'}
+• 교육 대상: ${data['education-type'] || '미선택'}
+• 관심 분야/직무: ${data.field || '미입력'}
+• 현재 AI 활용 수준: ${data['current-level'] || '미선택'}
+• 달성하고 싶은 목표: ${data.goals}
+• 희망 교육 일정: ${data.timeline || '미선택'}
+• 예산 범위: ${data.budget || '미입력'}
+
+신청 시간: ${new Date().toLocaleString('ko-KR')}
+
+** 1:1 맞춤형 AI 커리큘럼 제작 및 강의 상담 **
+            `.trim();
+
+            // Create mailto link
+            const mailtoLink = `mailto:krt21k@naver.com?subject=💡 ai.trendwave 맞춤형 AI 교육 상담 신청 - ${data['custom-name']}님&body=${encodeURIComponent(emailContent)}`;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.classList.remove('loading');
+                
+                // Try to open email client
+                window.open(mailtoLink);
+                
+                // Show success message
+                showMessage(
+                    "맞춤형 교육 상담 신청 완료! 💡",
+                    `${data['custom-name']}님의 맞춤형 교육 상담 신청이 완료되었습니다!<br><br><strong>24시간 내에 상세한 상담을 위해 연락드리겠습니다.</strong><br><br>📧 이메일 프로그램이 열리지 않으면 krt21k@naver.com으로 직접 연락주세요!`,
+                    "success"
+                );
+                
+                closeCustomModal();
                 this.reset();
                 
                 // Remove validation classes
@@ -1837,24 +2178,60 @@
 
         // Close modal when clicking outside
         window.addEventListener('click', function(e) {
-            const modal = document.getElementById('applicationModal');
-            if (e.target === modal) {
+            const applicationModal = document.getElementById('applicationModal');
+            const customModal = document.getElementById('customModal');
+            
+            if (e.target === applicationModal) {
                 closeModal();
+            }
+            if (e.target === customModal) {
+                closeCustomModal();
             }
         });
 
         // Add keyboard navigation for accessibility
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const modal = document.getElementById('applicationModal');
-                if (modal.style.display === 'block') {
+                const applicationModal = document.getElementById('applicationModal');
+                const customModal = document.getElementById('customModal');
+                
+                if (applicationModal && applicationModal.style.display === 'block') {
                     closeModal();
+                }
+                if (customModal && customModal.style.display === 'block') {
+                    closeCustomModal();
                 }
             }
         });
 
-        // Initialize page
+        // Initialize page and ensure buttons work
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, setting up modal functions...');
+            
+            // 모든 무료 교육 신청 버튼에 이벤트 리스너 추가
+            const freeEducationButtons = document.querySelectorAll('button[onclick*="openModal"], .cta-button');
+            freeEducationButtons.forEach(button => {
+                if (button.innerHTML.includes('9월 15일까지 무료 교육 신청하기') || 
+                    button.innerHTML.includes('내게 맞는 AI 교육 신청하기')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Free education button clicked!');
+                        openModal();
+                    });
+                }
+            });
+            
+            // 맞춤형 교육 버튼에 이벤트 리스너 추가
+            const customEducationButtons = document.querySelectorAll('button[onclick*="openCustomModal"]');
+            customEducationButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Custom education button clicked!');
+                    openCustomModal();
+                });
+            });
+            
+            // 히어로 콘텐츠 애니메이션
             setTimeout(() => {
                 const heroContent = document.querySelector('.hero-content');
                 if (heroContent) {
