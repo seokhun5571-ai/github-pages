@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai.trendwave - AI가 처음이어도 괜찮아요!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --bg-white: #ffffff;
+            --bg-gray-50: #f7fafc;
+            --bg-gray-100: #edf2f7;
+            --border-light: #e2e8f0;
+            
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--bg-white);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.current-page::before {
+            opacity: 0.1;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.current-page {
+            color: #667eea;
+            transform: translateY(-1px);
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50px, -50px); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 3rem;
+            opacity: 0.85;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            text-decoration: none;
+            border-radius: var(--radius-2xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(246, 109, 155, 0.5);
+        }
+
+        /* Promo banner */
+        .promo-banner {
+            background: var(--warning-gradient);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .promo-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-badge {
+            background: rgba(255, 255, 255, 0.9);
+            color: #fa709a;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-2xl);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Section */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-white);
+            border-radius: var(--radius-2xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+        /* Tools category */
+        .tools-category {
+            background: var(--bg-gray-50);
+            border-radius: var(--radius-3xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .tools-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-xl);
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Tool cards */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 1.75rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            background: white;
+        }
+
+        .tool-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 6px;
+        }
+
+        .tool-logo.full-logo img {
+            padding: 0;
+            object-fit: cover;
+        }
+
+        .tool-logo.icon-only img {
+            padding: 12px;
+        }
+
+        .tool-card:hover .tool-logo {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .tool-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tool-description {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Fallback styles */
+        .tool-logo.fallback {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .chatgpt.fallback { background: linear-gradient(135deg, #10a37f, #1a7f64); }
+        .claude.fallback { background: linear-gradient(135deg, #cc785c, #b8654a); }
+        .gemini.fallback { background: linear-gradient(135deg, #4285f4, #9c27b0); }
+        .grok.fallback { background: linear-gradient(135deg, #000000, #333333); }
+        .perplexity.fallback { background: linear-gradient(135deg, #1fb6ff, #0ea5e9); }
+        .midjourney.fallback { background: linear-gradient(135deg, #000000, #434343); }
+        .elevenlabs.fallback { background: linear-gradient(135deg, #000000, #434343); }
+        .suno.fallback { background: linear-gradient(135deg, #ff7b00, #ff006e); }
+        .canva.fallback { background: linear-gradient(135deg, #7928ca, #00d4ff); }
+        .runway.fallback { background: linear-gradient(135deg, #000000, #00ff41); }
+        .capcut.fallback { background: linear-gradient(135deg, #000000, #434343); }
+        .notion.fallback { background: linear-gradient(135deg, #000000, #434343); }
+        .gamma.fallback { background: linear-gradient(135deg, #ff6b6b, #ff8e8e); }
+        .adobe.fallback { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .veo.fallback { background: linear-gradient(135deg, #4285f4, #ea4335); }
+        .zapier.fallback { background: linear-gradient(135deg, #ff4a00, #ff7b00); }
+        .akool.fallback { background: linear-gradient(135deg, #4285f4, #0ea5e9); }
+        .obsidian.fallback { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+        .skywork.fallback { background: linear-gradient(135deg, #3b82f6, #10b981); }
+        .sesame.fallback { background: linear-gradient(135deg, #10b981, #06b6d4); }
+        .youlearn.fallback { background: linear-gradient(135deg, #374151, #6b7280); }
+        .default-ai.fallback { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question::before {
+            content: '❓';
+            font-size: 1.5rem;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Contact */
+        .contact-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-2xl);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: var(--radius-xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-button.instagram {
+            background: linear-gradient(45deg, #e4405f, #f77737);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #4facfe;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            margin: 3% auto;
+            padding: 3rem;
+            border-radius: var(--radius-2xl);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        @keyframes modalSlideIn {
+            from { 
+                transform: translateY(-50px) scale(0.95); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .close:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--bg-white);
+            font-family: inherit;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Success animation */
+        @keyframes successSlideIn {
+            from { 
+                transform: translate(-50%, -50%) scale(0.8); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        .error {
+            border-color: #e53e3e !important;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1) !important;
+        }
+
+        .success {
+            border-color: #43e97b !important;
+            box-shadow: 0 0 0 3px rgba(67, 233, 123, 0.1) !important;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .tools-category {
+                padding: 2rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">ai.trendwave</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link current-page">홈</a></li>
+                <li><a href="#education" class="nav-link">교육 과정</a></li>
+                <li><a href="#tools" class="nav-link">AI 도구들</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">문의</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>AI가 처음이어도<br>괜찮아요!</h1>
+                <div class="hero-subtitle">놀랍도록 쉽고 재미있는 AI 도구 40가지+ 완벽 마스터!</div>
+                <div class="hero-description">
+                    어려운 용어도, 복잡한 설정도 필요 없어요. 
+                    AI를 전혀 모르는 분들도 하나씩 차근차근 따라하면서 
+                    일상과 업무가 편해지는 마법을 경험해보세요.
+                </div>
+                <button class="cta-button" onclick="openModal()">
+                    <span>🎉</span>
+                    9월 15일까지 무료 교육 신청하기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content">
+                <div class="promo-badge">🎉 9월 15일까지 한정</div>
+                <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;">
+                    9월 15일까지 한정! 완전 무료 AI 입문 교육
+                </div>
+                <div style="font-size: 1rem; opacity: 0.9;">
+                    평소 유료로 진행하던 교육을 런칭 기념으로 무료 제공합니다
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comfort Section -->
+    <section class="section" style="background: var(--bg-gray-50);">
+        <div class="container">
+            <div class="grid grid-4">
+                <div class="card fade-in">
+                    <div class="contact-icon" style="margin: 0 auto 1.5rem; width: 60px; height: 60px; font-size: 1.5rem;">🤗</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; text-align: center;">컴맹이어도 OK!</h3>
+                    <p style="color: var(--text-secondary); text-align: center; line-height: 1.6;">컴퓨터를 잘 몰라도 괜찮아요. 클릭 한 번부터 천천히 알려드립니다.</p>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.1s;">
+                    <div class="contact-icon" style="margin: 0 auto 1.5rem; width: 60px; height: 60px; font-size: 1.5rem;">🎯</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; text-align: center;">실생활 바로 적용</h3>
+                    <p style="color: var(--text-secondary); text-align: center; line-height: 1.6;">어려운 이론 말고, 오늘 당장 써먹을 수 있는 실용적인 방법만!</p>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.2s;">
+                    <div class="contact-icon" style="margin: 0 auto 1.5rem; width: 60px; height: 60px; font-size: 1.5rem;">💝</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; text-align: center;">런칭 기념 무료!</h3>
+                    <p style="color: var(--text-secondary); text-align: center; line-height: 1.6;">9월 15일까지 한정으로 평소 유료 교육을 무료로 제공합니다!</p>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.3s;">
+                    <div class="contact-icon" style="margin: 0 auto 1.5rem; width: 60px; height: 60px; font-size: 1.5rem;">👥</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; text-align: center;">소그룹 맞춤 교육</h3>
+                    <p style="color: var(--text-secondary); text-align: center; line-height: 1.6;">대형 강의가 아닌 소규모로 진행해서 질문하기 쉽고 편안해요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: center;">
+                <div class="slide-in-left">
+                    <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; color: var(--text-primary);">저도 처음엔 AI가 막막했어요</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.7;">AI를 써보고 싶은데 어디서부터 시작해야 할지, 어떤 걸 써야 할지 정말 막막했어요. 그런데 하나씩 차근차근 배워보니까 생각보다 쉽고 정말 도움이 되더라고요!</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.7;">이제는 AI 덕분에 업무 시간도 절약되고, 새로운 아이디어도 많이 얻고 있어요. 혼자만 알고 있기 아까워서 여러분들과 함께 나누고 싶어요.</p>
+                    <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.7;"><strong style="color: var(--text-primary);">"AI는 어려운 게 아니라 친구 같은 거예요!"</strong><br>함께 하나씩 배워가면서 AI와 친해져 봅시다.</p>
+                </div>
+                <div class="slide-in-right">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                        <div style="background: #2c2c2c; border-radius: var(--radius-xl); padding: 1.5rem; box-shadow: var(--shadow-lg);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">🐧</div>
+                                <div style="color: white; font-weight: 600;">방찐 튜브</div>
+                            </div>
+                            <div style="background: #404040; color: white; padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 0.75rem; font-size: 0.9rem; line-height: 1.4;">
+                                이 강의는 단순히 AI 기능을 알려주는 게 아니라, AI를 어떻게 활용하면 삶에 도움이 되는지 구체적으로 보여주셔서 너무 좋았습니다.
+                            </div>
+                            <div style="background: #fee500; color: #2c2c2c; padding: 0.75rem; border-radius: var(--radius-lg); font-size: 0.9rem; margin-left: 2rem;">
+                                감사합니다 😊 그렇게 느끼셨다니 보람차네요 👍
+                            </div>
+                        </div>
+                        <div style="background: #2c2c2c; border-radius: var(--radius-xl); padding: 1.5rem; box-shadow: var(--shadow-lg);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--success-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">🧸</div>
+                                <div style="color: white; font-weight: 600;">하트뽀뽀 어피치</div>
+                            </div>
+                            <div style="background: #404040; color: white; padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 0.75rem; font-size: 0.9rem; line-height: 1.4;">
+                                AI가 이렇게 재미있고 쉬운 줄 처음 알았네요 👍 무료 강의 진짜 너무 유익했어요!
+                            </div>
+                            <div style="background: #fee500; color: #2c2c2c; padding: 0.75rem; border-radius: var(--radius-lg); font-size: 0.9rem; margin-left: 2rem;">
+                                만족하셨다니 정말 다행이에요! 😊
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section" style="background: var(--bg-gray-50);">
+        <div class="container">
+            <h2 class="section-title fade-in">4단계 맞춤형 AI 마스터 과정</h2>
+            <p class="section-subtitle fade-in">
+                개인별 수준과 관심 분야에 따라 <strong>단계별·목적별</strong>로 다르게 진행됩니다!<br>
+                초보자부터 전문가까지 - 나에게 딱 맞는 AI 교육을 받아보세요
+            </p>
+            
+            <div class="grid grid-2" style="gap: 3rem;">
+                <!-- 1단계: AI 시대 일상에 초대하기 -->
+                <div class="card fade-in" style="border-left: 6px solid #667eea;">
+                    <div style="background: var(--primary-gradient); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-2xl); font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">1단계</div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem; font-weight: 700;">🚀 AI 시대: 일상에 초대하기</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">💡 AI 완전 초보자를 위한 첫걸음 - 어렵지 않아요, 재미있어요!</p>
+                    
+                    <div style="background: #f8f9ff; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">👋 이런 분들을 위한 강의</h4>
+                        <ul style="list-style: none; margin: 0; color: var(--text-secondary);">
+                            <li style="padding: 0.3rem 0;">✋ "AI가 뭔지 전혀 모르겠어요"</li>
+                            <li style="padding: 0.3rem 0;">🤔 "챗GPT 들어는 봤는데 써본 적은 없어요"</li>
+                            <li style="padding: 0.3rem 0;">😅 "AI 시대라는데 나만 뒤처지는 것 같아요"</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-weight: 600; color: #667eea;">괜찮습니다! 함께 차근차근 시작해봐요 🤗</p>
+                    </div>
+                    
+                    <a href="https://ai-trendwave-tool.notion.site/AI-2596e20acd34807ea960da1be9ff2d1e" target="_blank" style="display: inline-block; background: var(--primary-gradient); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--radius-xl); font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;">📚 상세 커리큘럼 보기</a>
+                </div>
+
+                <!-- 2단계: AI 업무 활용 -->
+                <div class="card fade-in" style="animation-delay: 0.1s; border-left: 6px solid #10b981;">
+                    <div style="background: var(--success-gradient); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-2xl); font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">2단계</div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem; font-weight: 700;">🚀 AI 업무 활용: 생산성 200% 만드는 AI 오피스</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">💡 실무진을 위한 AI 업무 혁신 - 업무 효율 극대화의 비밀!</p>
+                    
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                        <h4 style="color: #10b981; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">👋 이런 분들을 위한 강의</h4>
+                        <ul style="list-style: none; margin: 0; color: var(--text-secondary);">
+                            <li style="padding: 0.3rem 0;">💼 "업무에 AI를 써보고 싶은데 어떻게 시작하죠?"</li>
+                            <li style="padding: 0.3rem 0;">📊 "보고서 작성이 너무 오래 걸려요"</li>
+                            <li style="padding: 0.3rem 0;">💡 "기획 아이디어가 안 떠올라요"</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-weight: 600; color: #10b981;">이제 AI가 여러분의 업무 파트너가 됩니다! 🤗</p>
+                    </div>
+                    
+                    <a href="http://ai-trendwave-tool.notion.site/AI-200-AI-2596e20acd34807e9acedcc2e676e78e?pvs=74" target="_blank" style="display: inline-block; background: var(--success-gradient); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--radius-xl); font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;">📚 상세 커리큘럼 보기</a>
+                </div>
+
+                <!-- 3단계: AI 툴 전문적으로 활용하기 -->
+                <div class="card fade-in" style="animation-delay: 0.2s; border-left: 6px solid #f59e0b;">
+                    <div style="background: var(--warning-gradient); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-2xl); font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">3단계</div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem; font-weight: 700;">🚀 AI 툴 전문적으로 활용하기</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">💡 AI 중급자를 위한 전문가 과정 - 툴을 조합해 작품을 만들어요!</p>
+                    
+                    <div style="background: #fffbeb; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                        <h4 style="color: #f59e0b; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">👋 이런 분들을 위한 강의</h4>
+                        <ul style="list-style: none; margin: 0; color: var(--text-secondary);">
+                            <li style="padding: 0.3rem 0;">🎨 "여러 AI 툴을 조합해서 완성도 높은 작품을 만들고 싶어요"</li>
+                            <li style="padding: 0.3rem 0;">📱 "AI로 만든 여러 콘텐츠를 만들어 내고 싶어요"</li>
+                            <li style="padding: 0.3rem 0;">⚙️ "단순 사용을 넘어 전문가 수준으로 AI를 활용하고 싶어요"</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-weight: 600; color: #f59e0b;">이제 AI 툴의 진짜 힘을 경험해보세요! 🤗</p>
+                    </div>
+                    
+                    <a href="https://ai-trendwave-tool.notion.site/AI-TOOL-2596e20acd3480ba9d65dfb10803a603?pvs=74" target="_blank" style="display: inline-block; background: var(--warning-gradient); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--radius-xl); font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;">📚 상세 커리큘럼 보기</a>
+                </div>
+
+                <!-- 4단계: AI 기반 1인 사업 설계하기 -->
+                <div class="card fade-in" style="animation-delay: 0.3s; border-left: 6px solid #8b5cf6;">
+                    <div style="background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-2xl); font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">4단계</div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem; font-weight: 700;">🚀 AI 기반 1인 사업 설계하기</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">💡 예비 창업가를 위한 AI 사업 모델 설계 - 초기 자본 없이 시작하는 스마트한 창업!</p>
+                    
+                    <div style="background: #faf5ff; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                        <h4 style="color: #8b5cf6; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700;">👋 이런 분들을 위한 강의</h4>
+                        <ul style="list-style: none; margin: 0; color: var(--text-secondary);">
+                            <li style="padding: 0.3rem 0;">💰 "AI를 활용해 새로운 사업을 시작하고 싶어요"</li>
+                            <li style="padding: 0.3rem 0;">🤖 "자동화된 수익 모델을 만들고 싶어요"</li>
+                            <li style="padding: 0.3rem 0;">💡 "아이디어는 있는데 어떻게 사업으로 만들지 모르겠어요"</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-weight: 600; color: #8b5cf6;">AI로 스마트하게 창업하는 방법을 알려드릴게요! 🤗</p>
+                    </div>
+                    
+                    <a href="https://ai-trendwave-tool.notion.site/4-AI-AI-2596e20acd34801bb466da8b758c2af8?pvs=74" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--radius-xl); font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;">📚 상세 커리큘럼 보기</a>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="text-align: center; margin-top: 3rem; background: var(--bg-white);">
+                <h3 style="color: #667eea; margin-bottom: 1rem; font-size: 1.4rem; font-weight: 700;">📋 맞춤형 교육 진행 방식</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; font-size: 1.1rem;">
+                    신청시 <strong>관심 분야와 사용 목적</strong>을 알려주시면,<br>
+                    개인별 수준에 맞춰 <strong>위 4단계 중 필요한 과정만 선택</strong>하여 진행합니다!<br>
+                    <em>* 초보자는 1단계부터, 업무용은 2단계, 전문가는 3-4단계 맞춤 진행</em>
+                </p>
+                <button class="cta-button" onclick="openModal()">내게 맞는 AI 교육 신청하기</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section id="tools" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="background: var(--primary-gradient); color: white; padding: 1rem 2rem; border-radius: var(--radius-2xl); font-size: 1.2rem; font-weight: 700; display: inline-block; margin-bottom: 2rem; box-shadow: var(--shadow-lg);">실무에 꼭 필요한 AI 도구들</div>
+                <h2 class="section-title fade-in">이런 AI 도구들을 배워요</h2>
+                <p class="section-subtitle fade-in">어려워 보이지만 사실 클릭 몇 번이면 끝이에요!</p>
+            </div>
+            
+            <!-- AI 챗봇 친구들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">💬</div>
+                    <div>
+                        <h3 class="category-title">AI 챗봇 친구들</h3>
+                        <p class="category-description">궁금한 걸 물어보면 친절하게 답해주는 AI들이에요. 마치 똑똑한 친구와 대화하는 것 같아요!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback chatgpt">GPT</div>
+                        <div class="tool-name">ChatGPT</div>
+                        <div class="tool-description">가장 유명한 AI 친구</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback claude">C</div>
+                        <div class="tool-name">Claude</div>
+                        <div class="tool-description">긴 글 잘 쓰는 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback gemini">G</div>
+                        <div class="tool-name">Gemini</div>
+                        <div class="tool-description">구글이 만든 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback grok">𝕏</div>
+                        <div class="tool-name">Grok</div>
+                        <div class="tool-description">실시간 정보 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback perplexity">P</div>
+                        <div class="tool-name">Perplexity</div>
+                        <div class="tool-description">검색 잘하는 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 업무에 도움을 주는 AI 도구들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">💼</div>
+                    <div>
+                        <h3 class="category-title">업무에 도움을 주는 AI 도구들</h3>
+                        <p class="category-description">보고서 작성, 회의 정리, 데이터 분석까지! 업무 효율을 높여주는 똑똑한 AI 비서들이에요.</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback notion">N</div>
+                        <div class="tool-name">Notion AI</div>
+                        <div class="tool-description">업무 노트 정리</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback gamma">G</div>
+                        <div class="tool-name">Gamma</div>
+                        <div class="tool-description">PPT 자동 생성</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">N</div>
+                        <div class="tool-name">NotebookLM</div>
+                        <div class="tool-description">구글 연구 도구</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback obsidian">O</div>
+                        <div class="tool-name">Obsidian</div>
+                        <div class="tool-description">지식 관리 시스템</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">O</div>
+                        <div class="tool-name">Google Opal</div>
+                        <div class="tool-description">구글 협업 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback youlearn">Y</div>
+                        <div class="tool-name">YouLearn AI</div>
+                        <div class="tool-description">학습 도우미 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback skywork">S</div>
+                        <div class="tool-name">Skywork</div>
+                        <div class="tool-description">문서 작업 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">P</div>
+                        <div class="tool-name">Promptimize AI</div>
+                        <div class="tool-description">프롬프트 개선 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">G</div>
+                        <div class="tool-name">Genspark</div>
+                        <div class="tool-description">검색 엔진 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 영상 만드는 AI 감독들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">🎬</div>
+                    <div>
+                        <h3 class="category-title">영상 만드는 AI 감독들</h3>
+                        <p class="category-description">영상 편집 몰라도 쉽게 영상을 만들 수 있어요. 아바타도 만들고 광고도 뚝딱!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">H</div>
+                        <div class="tool-name">HeyGen</div>
+                        <div class="tool-description">아바타 영상 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">C</div>
+                        <div class="tool-name">Creatify</div>
+                        <div class="tool-description">광고 영상 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback akool">A</div>
+                        <div class="tool-name">Akool</div>
+                        <div class="tool-description">얼굴 바꾸기 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback veo">V</div>
+                        <div class="tool-name">Google Veo 3</div>
+                        <div class="tool-description">구글 영상 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">K</div>
+                        <div class="tool-name">Kling AI</div>
+                        <div class="tool-description">스마트 영상 생성</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">H</div>
+                        <div class="tool-name">Haieruo</div>
+                        <div class="tool-description">중국 영상 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback capcut">C</div>
+                        <div class="tool-name">CapCut</div>
+                        <div class="tool-description">무료 영상 편집</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback runway">R</div>
+                        <div class="tool-name">Runway</div>
+                        <div class="tool-description">영상 편집 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 그림 그려주는 AI 화가들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">🎨</div>
+                    <div>
+                        <h3 class="category-title">그림 그려주는 AI 화가들</h3>
+                        <p class="category-description">말로만 설명하면 멋진 그림을 그려주는 신기한 AI들. 그림 못 그려도 괜찮아요!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback adobe">A</div>
+                        <div class="tool-name">Adobe Firefly</div>
+                        <div class="tool-description">어도비 그림 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback canva">C</div>
+                        <div class="tool-name">Canva AI</div>
+                        <div class="tool-description">디자인 도구</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">D</div>
+                        <div class="tool-name">DALL-E</div>
+                        <div class="tool-description">OpenAI 그림 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback midjourney">M</div>
+                        <div class="tool-name">Midjourney</div>
+                        <div class="tool-description">예술적인 그림</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">W</div>
+                        <div class="tool-name">Whisk</div>
+                        <div class="tool-description">구글 이미지 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 코딩 도와주는 AI 개발자들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">💻</div>
+                    <div>
+                        <h3 class="category-title">코딩 도와주는 AI 개발자들</h3>
+                        <p class="category-description">프로그래밍 몰라도 괜찮아요. AI가 코드도 만들고 웹사이트도 만들어줘요!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">C</div>
+                        <div class="tool-name">Cursor</div>
+                        <div class="tool-description">AI 코딩 도구</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">B</div>
+                        <div class="tool-name">Bolt</div>
+                        <div class="tool-description">웹사이트 빌더</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">21</div>
+                        <div class="tool-name">21st Dev</div>
+                        <div class="tool-description">컴포넌트 라이브러리</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">J</div>
+                        <div class="tool-name">Jules</div>
+                        <div class="tool-description">데이터 분석 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 업무 자동화 AI 비서들 -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">⚡</div>
+                    <div>
+                        <h3 class="category-title">업무 자동화 AI 비서들</h3>
+                        <p class="category-description">반복되는 지루한 업무를 AI가 대신 해줘요. 시간 절약의 마법사들이에요!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">N8</div>
+                        <div class="tool-name">N8N</div>
+                        <div class="tool-description">업무 자동화 도구</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">M</div>
+                        <div class="tool-name">Make</div>
+                        <div class="tool-description">워크플로우 자동화</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback zapier">Z</div>
+                        <div class="tool-name">Zapier</div>
+                        <div class="tool-description">앱 연결 자동화</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">A</div>
+                        <div class="tool-name">Apify</div>
+                        <div class="tool-description">웹 스크래핑 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">F</div>
+                        <div class="tool-name">Flowith</div>
+                        <div class="tool-description">워크플로우 AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 목소리와 음악 AI -->
+            <div class="tools-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">🎵</div>
+                    <div>
+                        <h3 class="category-title">목소리와 음악 AI</h3>
+                        <p class="category-description">내 목소리를 다른 목소리로 바꾸거나 음악을 만들어요. 가수가 된 기분!</p>
+                    </div>
+                </div>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <div class="tool-logo fallback suno">♪</div>
+                        <div class="tool-name">Suno</div>
+                        <div class="tool-description">음악 만드는 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback elevenlabs">11</div>
+                        <div class="tool-name">ElevenLabs</div>
+                        <div class="tool-description">목소리 복제 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback sesame">S</div>
+                        <div class="tool-name">Sesame</div>
+                        <div class="tool-description">음성 비서 AI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-logo fallback default-ai">클</div>
+                        <div class="tool-name">클로바노트</div>
+                        <div class="tool-description">네이버 회의록 AI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section" style="background: var(--bg-gray-50);">
+        <div class="container">
+            <h2 class="section-title fade-in">자주 묻는 질문들</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">AI를 아예 몰라도 괜찮을까요?</div>
+                    <div class="faq-answer">물론입니다! AI라는 단어조차 생소하셔도 괜찮아요. 오히려 선입견 없이 시작하시는 분들이 더 빨리 배우는 경우가 많아요. AI가 무엇인지부터 차근차근 알려드립니다.</div>
+                </div>
+                <div class="faq-item fade-in" style="animation-delay: 0.1s;">
+                    <div class="faq-question">나이가 40대 이상이어도 괜찮을까요?</div>
+                    <div class="faq-answer">네! 40대, 50대, 60대 분들도 많이 참여하세요. 오히려 경험이 많으셔서 AI를 더 실용적으로 활용하시는 경우가 많아요. 나이는 전혀 문제가 되지 않습니다.</div>
+                </div>
+                <div class="faq-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="faq-question">정말 무료인가요? 나중에 돈 내라고 하지 않나요?</div>
+                    <div class="faq-answer">런칭 기념 이벤트로 9월 15일까지 한정 무료예요! 평소에는 유료로 진행하는 교육이지만, 많은 분들께 AI를 알려드리고 싶어서 특별히 무료로 제공합니다.</div>
+                </div>
+                <div class="faq-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="faq-question">준비물이 있나요?</div>
+                    <div class="faq-answer">노트북이나 스마트폰만 있으면 돼요. 특별한 프로그램 설치도 필요 없어요!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">📞 문의 및 신청</h2>
+            <p class="section-subtitle fade-in">궁금한 점이 있으시거나 더 자세한 상담을 원하시면 편하게 연락주세요!</p>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">이메일 문의</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">자세한 상담 및 교육 관련 모든 문의</p>
+                    <a href="mailto:krt21k@naver.com" class="contact-button">
+                        <strong>krt21k@naver.com</strong>
+                    </a>
+                    <div style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; text-align: left;">
+                        • 24시간 언제든 문의 가능<br>
+                        • 1일 이내 답변 보장<br>
+                        • 개인 맞춤 상담 제공
+                    </div>
+                </div>
+                
+                <div class="contact-card fade-in" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">📱</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">Instagram DM</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">빠른 소통과 일상적인 AI 팁 공유</p>
+                    <button class="contact-button instagram" onclick="showInstagramInfo()">
+                        <strong>@ai_trendwave</strong>
+                    </button>
+                    <div style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; text-align: left;">
+                        • 빠른 답변 (평일 9-18시)<br>
+                        • AI 활용 꿀팁 정기 업로드<br>
+                        • 교육 후기 및 사례 공유
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="margin-top: 3rem; background: var(--primary-gradient); color: white;">
+                <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.4rem; text-align: center;">💌 연락 주실 때 이렇게 말씀해 주세요!</h3>
+                <div style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7;">
+                    <p style="margin-bottom: 1rem;"><strong>📝 간단한 자기소개:</strong> 이름, 나이대, 직업</p>
+                    <p style="margin-bottom: 1rem;"><strong>🏢 소속 기관:</strong> 회사명, 기관명, 단체명 등</p>
+                    <p style="margin-bottom: 1rem;"><strong>🎯 관심 분야:</strong> 업무용 / 창작용 / 일상용 등</p>
+                    <p style="margin-bottom: 1rem;"><strong>⚡ AI 경험:</strong> 완전 초보 / 조금 써봄 / 어느정도 알아요</p>
+                    <p style="margin-bottom: 2rem;"><strong>📅 희망 일정:</strong> 평일/주말, 오전/오후 등</p>
+                    <p style="color: #fee500; font-weight: bold; text-align: center; font-size: 1.2rem;">
+                        💡 단체/기관 맞춤형 교육도 가능합니다!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ai.trendwave</h3>
+                    <p>AI가 어려운 분들을 위한 가장 쉽고 친근한 AI 입문 교육입니다. 함께 AI와 친해져 봐요!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>교육 문의</h3>
+                    <p>Email: krt21k@naver.com<br>
+                       Instagram: @ai_trendwave<br>
+                       문의 시간: 평일 오전 9시-오후 6시<br>
+                       빠른 상담 원하시면 Instagram DM!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>교육 정보</h3>
+                    <p>
+                        소그룹, 중소그룹 맞춤 교육<br>
+                        2일 과정 (각 2시간)<br>
+                        실습 중심 교육<br>
+                        평일/주말 모두 가능
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#">Instagram @ai_trendwave</a><br>
+                        <a href="#">이메일 krt21k@naver.com</a><br>
+                        <a href="#">AI 꿀팁 & 교육 후기</a><br>
+                        <a href="#">개인 맞춤 상담</a>
+                    </p>
+                </div>
+            </div>
+            <p style="padding-top: 2rem; border-top: 1px solid #555; margin-top: 2rem; text-align: center; color: rgba(255,255,255,0.7);">
+                © 2025 ai.trendwave. All rights reserved. | AI 교육의 첫걸음을 함께해요 💙
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">×</button>
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;">런칭 기념 무료 AI 입문 교육 신청</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary); line-height: 1.6;">부담 없이 신청하세요! 24시간 내에 친절하게 연락드릴게요 😊<br><strong style="color: #fa709a;">🎉 9월 15일까지 한정 무료!</strong></p>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="name">이름 *</label>
+                    <input type="text" id="name" name="name" required placeholder="홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="organization">소속 *</label>
+                    <input type="text" id="organization" name="organization" required placeholder="예: ○○회사, ○○기관, ○○단체, ○○학교 등">
+                </div>
+                <div class="form-group">
+                    <label for="age">연령대</label>
+                    <select id="age" name="age">
+                        <option value="">선택해주세요</option>
+                        <option value="20s">20대</option>
+                        <option value="30s">30대</option>
+                        <option value="40s">40대</option>
+                        <option value="50s">50대</option>
+                        <option value="60s">60대 이상</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처 *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="example@naver.com (선택사항)">
+                </div>
+                <div class="form-group">
+                    <label for="computer-level">컴퓨터 사용 정도</label>
+                    <select id="computer-level" name="computer-level">
+                        <option value="">선택해주세요</option>
+                        <option value="beginner">인터넷 정도만 해요</option>
+                        <option value="basic">문서 작성 정도 해요</option>
+                        <option value="intermediate">웬만한 건 다 해요</option>
+                        <option value="advanced">컴퓨터 고수예요</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="motivation">AI를 배우고 싶은 이유</label>
+                    <textarea id="motivation" name="motivation" rows="3" placeholder="예: 업무에 도움이 되었으면 좋겠어요, 시대에 뒤처지기 싫어요, 단순히 궁금해요 등 편하게 써주세요!"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="schedule">선호하는 시간</label>
+                    <select id="schedule" name="schedule">
+                        <option value="">선택해주세요</option>
+                        <option value="weekday-morning">평일 오전 (9시-12시)</option>
+                        <option value="weekday-afternoon">평일 오후 (1시-6시)</option>
+                        <option value="weekday-evening">평일 저녁 (7시-9시)</option>
+                        <option value="weekend">주말 (시간 협의)</option>
+                    </select>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="cta-button">9월 15일까지 무료 교육 신청하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Update current page indicator
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('current-page'));
+                this.classList.add('current-page');
+            });
+        });
+
+        // Enhanced scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            // Navigation active section detection
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollTop >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('current-page');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('current-page');
+                }
+            });
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Modal functions
+        function openModal() {
+            const modal = document.getElementById('applicationModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.querySelector('.modal-content').style.transform = 'translateY(0) scale(1)';
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('applicationModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modalContent.style.transform = 'translateY(-50px) scale(0.95)';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Instagram info function
+        function showInstagramInfo() {
+            showMessage(
+                "Instagram으로 연락하기",
+                "@ai_trendwave 계정으로 검색하시거나<br>Instagram에서 'ai_trendwave'를 검색해서 DM을 보내주세요!<br><br>빠른 답변과 AI 꿀팁도 함께 받아보실 수 있어요! 📱",
+                "success"
+            );
+        }
+
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '신청 처리 중...';
+            submitButton.classList.add('loading');
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields
+            const requiredFields = ['name', 'organization', 'phone'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!data[field]) {
+                    input.classList.add('error');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                }
+            });
+            
+            if (!isValid) {
+                submitButton.innerHTML = originalText;
+                submitButton.classList.remove('loading');
+                showMessage("입력 오류", "필수 항목을 모두 입력해주세요.", "error");
+                return;
+            }
+            
+            // Email content preparation
+            const emailContent = `
+🎉 ai.trendwave 런칭 기념 무료 교육 신청이 접수되었습니다!
+
+📝 신청자 정보:
+• 이름: ${data.name}
+• 소속: ${data.organization}
+• 연령대: ${data.age || '미선택'}
+• 연락처: ${data.phone}
+• 이메일: ${data.email || '미입력'}
+• 컴퓨터 사용 정도: ${data['computer-level'] || '미선택'}
+• 학습 동기: ${data.motivation || '미입력'}
+• 선호 시간: ${data.schedule || '미선택'}
+
+신청 시간: ${new Date().toLocaleString('ko-KR')}
+
+** 9월 15일까지 런칭 기념 무료 교육 **
+            `.trim();
+
+            // Create mailto link
+            const mailtoLink = `mailto:krt21k@naver.com?subject=🎉 ai.trendwave 런칭 기념 무료 교육 신청 - ${data.name}님&body=${encodeURIComponent(emailContent)}`;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.classList.remove('loading');
+                
+                // Try to open email client
+                window.open(mailtoLink);
+                
+                // Show success message
+                showMessage(
+                    "신청이 완료되었습니다! 🎉",
+                    `${data.name}님, 24시간 내에 ${data.phone}로 연락드리겠습니다.<br><br><strong style="color: #fa709a;">🎉 런칭 기념 9월 15일까지 한정 무료 교육입니다!</strong><br><br>이메일 클라이언트가 열리지 않으면 krt21k@naver.com으로 직접 연락 주세요!`,
+                    "success"
+                );
+                
+                closeModal();
+                this.reset();
+                
+                // Remove validation classes
+                document.querySelectorAll('.success, .error').forEach(el => {
+                    el.classList.remove('success', 'error');
+                });
+            }, 1500);
+        });
+
+        // Generic message function
+        function showMessage(title, content, type = "info") {
+            const bgColor = type === "success" ? "#43e97b" : type === "error" ? "#e53e3e" : "#667eea";
+            const iconEmoji = type === "success" ? "🎉" : type === "error" ? "⚠️" : "ℹ️";
+            
+            const message = document.createElement('div');
+            message.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 1rem;
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                    z-index: 3000;
+                    text-align: center;
+                    max-width: 400px;
+                    animation: successSlideIn 0.4s ease;
+                ">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">${iconEmoji}</div>
+                    <h3 style="color: ${bgColor}; margin-bottom: 1rem;">${title}</h3>
+                    <div style="color: #4a5568; line-height: 1.6; margin-bottom: 1.5rem;">${content}</div>
+                </div>
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 2999;
+                    backdrop-filter: blur(5px);
+                " onclick="this.parentElement.remove()"></div>
+            `;
+            
+            document.body.appendChild(message);
+            
+            // Auto close after 5 seconds
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.remove();
+                }
+            }, 5000);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('applicationModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Add keyboard navigation for accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('applicationModal');
+                if (modal.style.display === 'block') {
+                    closeModal();
+                }
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    heroContent.style.opacity = '1';
+                    heroContent.style.transform = 'translateY(0)';
+                }
+            }, 500);
+        });
+
+        // Add smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
